@@ -1,18 +1,32 @@
+import {notifier} from 'node-notifier'
+import path from 'path'
+import os from 'os'
+import notifySend from 'notify-send'
 
-interface ILogger {
-  log: (message:string) => void
-  logInfo: (message:string) => void
-  logError: (message:string) => void
-  logWarn: (message:string) => void
+
+type Notification = {
+  title:string,
+  message:string
 }
 
-class ConsoleLogger implements ILogger{
-  log = (message:string) => console.log(message)
-  logInfo = (message:string) => console.info('[INFO]: ' + message)
-  logError = (message:string) => console.error('[ERROR]: ' + message)
-  logWarn = (message:string) => console.warn('[WARN]: ' + message)
+const iconPath = path.join(__dirname, "../img/archLogo.png")
+
+const notify = (notification: Notification) => {
+  switch(os.type()){
+    case 'Linux':
+      notifySend.icon(iconPath)
+                .notify(notification.title, notification.message)
+      break;
+    default:
+      notifier.notify({
+        title: notification.title,
+        message: notification.message,
+        icon: iconPath
+      })
+      break;
+  }
 }
 
 
-export type { ILogger }
-export { ConsoleLogger }
+export type { Notification }
+export { notify }

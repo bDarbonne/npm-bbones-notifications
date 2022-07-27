@@ -1,2 +1,2 @@
-# @bbones/logger
-Npm Package - Logger Javascript Library
+# @bbones/notifications
+Npm Package - Notifications Javascript Library
