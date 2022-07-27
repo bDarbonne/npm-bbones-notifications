@@ -1,18 +1,18 @@
+import {notifier} from 'node-notifier'
+import path from 'path'
 
-interface ILogger {
-  log: (message:string) => void
-  logInfo: (message:string) => void
-  logError: (message:string) => void
-  logWarn: (message:string) => void
+type Notification = {
+  title:string,
+  message:string
 }
 
-class ConsoleLogger implements ILogger{
-  log = (message:string) => console.log(message)
-  logInfo = (message:string) => console.info('[INFO]: ' + message)
-  logError = (message:string) => console.error('[ERROR]: ' + message)
-  logWarn = (message:string) => console.warn('[WARN]: ' + message)
+const notify = (notification: Notification) => {
+  notifier.notify({
+    title: notification.title,
+    message: notification.message,
+    icon: path.join(__dirname, "../img/archLogo.png")
+  })
 }
 
-
-export type { ILogger }
-export { ConsoleLogger }
+export type { Notification }
+export { notify }
