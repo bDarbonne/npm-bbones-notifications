@@ -18,11 +18,11 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.29",
+    "@types/node-notifier": "^8.0.2",
     "rimraf": "^3.0.2",
     "typescript": "^4.6.3"
   },
   "dependencies": {
-    "node-notifier": "^10.0.1",
-    "notify-send": "^0.1.2"
+    "node-notifier": "^10.0.1"
   }
 }
